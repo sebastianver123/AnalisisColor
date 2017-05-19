@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -72,6 +73,7 @@ public class Visor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        botonCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +100,13 @@ public class Visor extends javax.swing.JFrame {
 
         jLabel3.setText("Azul");
 
+        botonCargar.setText("CARGAR");
+        botonCargar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCargarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout miPanelLayout = new javax.swing.GroupLayout(miPanel);
         miPanel.setLayout(miPanelLayout);
         miPanelLayout.setHorizontalGroup(
@@ -115,10 +124,12 @@ public class Visor extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(nivelV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, miPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(nivelA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, miPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botonCargar)
+                        .addGroup(miPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(nivelA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32))
         );
         miPanelLayout.setVerticalGroup(
@@ -140,7 +151,9 @@ public class Visor extends javax.swing.JFrame {
                 .addGroup(miPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nivelA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(botonCargar)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,6 +199,20 @@ public class Visor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nivelRActionPerformed
 
+    private void botonCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCargarMouseClicked
+        JFileChooser miSelector= new JFileChooser();
+        
+        int resultado = miSelector.showOpenDialog(null);
+        
+        if(resultado == JFileChooser.APPROVE_OPTION){
+            File Archivo=miSelector.getSelectedFile();
+            this.cargarImagen(Archivo);
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonCargarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +249,7 @@ public class Visor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCargar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
